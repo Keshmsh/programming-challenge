@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 class CountryUtilsTest {
 
     @Test
-    @DisplayName("Happy path testing for getCountriesWithHighestDensity()")
+    @DisplayName("getCountriesWithHighestDensity()- Happy flow")
     void returnCountry_whenGetDaysWithSmallestSpread_givenValidCountryList() {
         //given
         List<Country> countries = Arrays.asList(new Country.Builder()
@@ -39,7 +39,7 @@ class CountryUtilsTest {
 
     @Test
     @DisplayName("empty Country list")
-    void returnEmptyList_whenGetDaysWithSmallestSpread_givenEmpytCountryList() {
+    void returnEmptyList_whenGetDaysWithSmallestSpread_givenEmptyCountryList() {
         //given
         List<Country> CountryList = Collections.emptyList();
 

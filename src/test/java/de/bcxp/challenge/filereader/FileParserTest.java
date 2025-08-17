@@ -39,10 +39,10 @@ class FileParserTest {
 
     @Nested
     @DisplayName("Test's for parseFileContent() - csv")
-    class parseCsvFileTest{
+    class parseCsvFileTest {
 
         @Test
-        @DisplayName("Happy path testing for parseFileContent()")
+        @DisplayName("parseFileContent() - Happy flow")
         void returnParsedFileContent_whenParseFileContent_givenValidCsvFile() throws IOException {
             //given
             String filePath = "src/test/resources/de.bcxp.challenge/weather/weather.csv";
@@ -68,7 +68,6 @@ class FileParserTest {
 
             //when
             fileUtilsStaticMock.when(() -> FileUtils.getFileExtension(anyString())).thenReturn(null);
-
 
             List<Map<String, String>> result = fileParser.parseFileContent(fileContent, filePath);
 
@@ -112,7 +111,7 @@ class FileParserTest {
         }
 
         @Test
-        @DisplayName("returns empty list for not implemented file extension")
+        @DisplayName("returns empty list for empty file content")
         void returnEmptyList_whenParseFileContent_givenEmptyFileContent() {
             //given
             String filePath = "src/test/resources/de.bcxp.challenge/weather/weather.csv";

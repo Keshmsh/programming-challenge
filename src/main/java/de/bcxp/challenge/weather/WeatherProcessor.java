@@ -22,15 +22,7 @@ public class WeatherProcessor {
         this.fileParser = fileParser;
     }
 
-    //TODO: add javadoc on methods
-
-    /**
-     * Process a weather file and creates a list of weather objects
-     *
-     * @param filePath filePath to weather file
-     * @return returns a list of {@link Weather}
-     */
-    public List<Weather> processWeather(String filePath) {
+    public List<Weather> processWeatherFile(String filePath) {
         try {
             String fileContent = fileReader.readFile(filePath);
 

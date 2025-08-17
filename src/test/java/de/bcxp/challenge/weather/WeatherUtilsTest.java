@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 class WeatherUtilsTest {
 
     @Test
-    @DisplayName("Happy path testing for getDaysWithSmallestSpread()")
+    @DisplayName("getDaysWithSmallestSpread() - Happy flow")
     void returnWeather_whenGetDaysWithSmallestSpread_givenValidWeatherList() {
         //given
         List<Weather> weatherList = Arrays.asList(new Weather.Builder()
@@ -37,8 +37,8 @@ class WeatherUtilsTest {
     }
 
     @Test
-    @DisplayName("empty weather list")
-    void returnEmptyList_whenGetDaysWithSmallestSpread_givenEmpytWeatherList() {
+    @DisplayName("returns empty list when weather list empty")
+    void returnEmptyList_whenGetDaysWithSmallestSpread_givenEmptyWeatherList() {
         //given
         List<Weather> weatherList = Collections.emptyList();
 

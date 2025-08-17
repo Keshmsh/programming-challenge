@@ -10,11 +10,13 @@ import de.bcxp.challenge.shared.utils.MapperUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class MapperUtilsTest {
 
     @Test
+    @DisplayName("rawDataMissingMandatoryKeys() - Happy flow")
     void returnFalse_whenRawDataMissingMandatoryKeys_givenValidKeys() {
         //given
         Map<String, String> rawData = Map.of("Day", "1", "MxT", "22", "MnT", "14");
@@ -28,6 +30,7 @@ class MapperUtilsTest {
     }
 
     @Test
+    @DisplayName("return true when key missing")
     void returnTrue_whenRawDataMissingMandatoryKeys_givenMissingKey() {
         //given
         Map<String, String> rawData = Map.of("MxT", "22", "MnT", "14");
@@ -41,6 +44,7 @@ class MapperUtilsTest {
     }
 
     @Test
+    @DisplayName("MapperUtils.parseToInt() - Happy flow")
     void returnIntValue_whenParseToInt_givenValidInteger() throws InvalidFileDataException {
         //given
         String value = "12";
@@ -53,6 +57,7 @@ class MapperUtilsTest {
     }
 
     @Test
+    @DisplayName("throws exception when parsing invalid value to int")
     void ThrowsException_whenParseToInt_givenInvalidInteger() {
         //given
         String value = "ab";
@@ -66,6 +71,7 @@ class MapperUtilsTest {
     }
 
     @Test
+    @DisplayName("MapperUtils.parseToDouble() - Happy flow")
     void returnDoubleValue_whenParseToDouble_givenValidDouble() throws InvalidFileDataException {
         //given
         String value = "12.0";
@@ -78,6 +84,7 @@ class MapperUtilsTest {
     }
 
     @Test
+    @DisplayName("throws exception when parsing invalid value to double")
     void ThrowsException_whenParseToDouble_givenInvalidDouble() {
         //given
         String value = "ab";
@@ -89,6 +96,4 @@ class MapperUtilsTest {
         //Then
         assertEquals(expectedMessage, result.getMessage());
     }
-
-
 }

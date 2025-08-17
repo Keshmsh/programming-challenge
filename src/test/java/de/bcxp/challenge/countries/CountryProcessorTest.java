@@ -33,12 +33,12 @@ class CountryProcessorTest {
     }
 
     @Test
-    @DisplayName("Happy path test for processCountry()")
-    void returnCountryList_whenProcessCountry_givenValidCountryFile() {
+    @DisplayName("processCountryFile() - Happy flow")
+    void returnCountryList_whenProcessCountryFile_givenValidCountryFile() {
         //given
         List<Map<String, String>> rawCountryData = Arrays.asList(Map.of("Name", "Austria", "Population", "8926000", "Area (km²)", "83855"),
                 Map.of("Name", "Belgium", "Population", "11566041", "Area (km²)", "30528"),
-        Map.of("Name", "Bulgaria", "Population", "6916548", "Area (km²)", "110994"));
+                Map.of("Name", "Bulgaria", "Population", "6916548", "Area (km²)", "110994"));
 
         //when
         when(fileReader.readFile(anyString())).thenReturn("fileContent");
@@ -52,7 +52,7 @@ class CountryProcessorTest {
 
     @Test
     @DisplayName("returns empty List when null file content")
-    void returnEmptyList_whenProcessCountry_givenNullFileContent() {
+    void returnEmptyList_whenProcessCountryFile_givenNullFileContent() {
         //when
         when(fileReader.readFile(anyString())).thenReturn(null);
         List<Country> result = countryProcessor.processCountryFile("anyPath");
@@ -64,7 +64,7 @@ class CountryProcessorTest {
 
     @Test
     @DisplayName("returns empty List when empty file content")
-    void returnEmptyList_whenProcessCountry_givenEmptyFileContent() {
+    void returnEmptyList_whenProcessCountryFile_givenEmptyFileContent() {
         //when
         when(fileReader.readFile(anyString())).thenReturn("");
         List<Country> result = countryProcessor.processCountryFile("anyPath");
@@ -76,7 +76,7 @@ class CountryProcessorTest {
 
     @Test
     @DisplayName("returns empty List when null parsed data")
-    void returnEmptyList_whenProcessCountry_givenNullParsedData() {
+    void returnEmptyList_whenProcessCountryFile_givenNullParsedData() {
         //when
         when(fileReader.readFile(anyString())).thenReturn("fileContent");
         when(fileParser.parseFileContent(anyString(), anyString())).thenReturn(null);
@@ -90,7 +90,7 @@ class CountryProcessorTest {
 
     @Test
     @DisplayName("returns empty List when empty parsed data")
-    void returnEmptyList_whenProcessCountry_givenEmptyParsedData() {
+    void returnEmptyList_whenProcessCountryFile_givenEmptyParsedData() {
         //when
         when(fileReader.readFile(anyString())).thenReturn("fileContent");
         when(fileParser.parseFileContent(anyString(), anyString())).thenReturn(Collections.emptyList());

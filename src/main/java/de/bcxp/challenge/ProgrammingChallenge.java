@@ -34,15 +34,12 @@ public class ProgrammingChallenge {
 
         WeatherProcessor weatherProcessor = new WeatherProcessor(fileReader, fileParser);
 
-        List<Weather> weatherList = weatherProcessor.processWeather(WEATHER_CSV);
+        List<Weather> weatherList = weatherProcessor.processWeatherFile(WEATHER_CSV);
 
         if (!weatherList.isEmpty()) {
             List<Weather> minSpreadWeather = WeatherUtils.getDaysWithSmallestSpread(weatherList);
 
-            System.out.printf("found %s Day(s) with smallest temperature spread (%s)",
-                    minSpreadWeather.size(),
-                    minSpreadWeather.get(0).getTemperatureSpread());
-
+            System.out.printf("found %s Day(s) with smallest temperature spread\n", minSpreadWeather.size());
             for (Weather weather : minSpreadWeather) {
                 String dayWithSmallestTempSpread = String.valueOf(weather.getDayOfMonth());
                 System.out.printf("Day: %s%n", dayWithSmallestTempSpread);
@@ -58,7 +55,7 @@ public class ProgrammingChallenge {
         if (!countries.isEmpty()) {
             List<Country> maxDensityCountries = CountryUtils.getCountriesWithHighestDensity(countries);
 
-            LOG.debug("found {} Countrie(s) with highest density ({})\n", maxDensityCountries.size(), maxDensityCountries.get(0).getDensity());
+            System.out.printf("found %s Countrie(s) with highest density\n", maxDensityCountries.size());
             for (Country country : maxDensityCountries) {
                 String countryWithHighestPopulationDensity = String.valueOf(country.getName());     // Your day analysis function call …
                 System.out.printf("Country with highest population density: %s%n", countryWithHighestPopulationDensity);

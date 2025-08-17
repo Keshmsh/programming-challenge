@@ -10,7 +10,7 @@ class FileTypeTest {
 
 
     @Test
-    @DisplayName("returns valid file type")
+    @DisplayName("fileType() - Happy flow")
     void returnsValidFileType_whenFileType_givenValidFileType() {
         //given
         String fileType = "csv";
@@ -24,7 +24,7 @@ class FileTypeTest {
     }
 
     @Test
-    @DisplayName("returns DEFAULT file type")
+    @DisplayName("returns DEFAULT file type for non existing")
     void returnsDefaultFileType_whenFileType_givenNonExistingFileType() {
         //given
         String fileType = "txt";

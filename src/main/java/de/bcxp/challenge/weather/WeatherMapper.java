@@ -1,5 +1,7 @@
 package de.bcxp.challenge.weather;
 
+import de.bcxp.challenge.shared.exception.InvalidFileDataException;
+import de.bcxp.challenge.shared.utils.MapperUtils;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -18,14 +20,14 @@ public class WeatherMapper {
     public static Weather fromMap(Map<String, String> rawData) {
         try {
 
-            if (rawDataMissingMandatoryKeys(rawData, MANDATORY_KEY_LIST)) {
+            if (MapperUtils.rawDataMissingMandatoryKeys(rawData, MANDATORY_KEY_LIST)) {
                 LOG.error("Missing mandatory Key's for rawData: {} - skip entry", rawData);
                 return null;
             }
 
-            int day = parseToInt(rawData.get(DAY));
-            int maxTemp = parseToInt(rawData.get(MAX_TEMPERATURE));
-            int minTemp = parseToInt(rawData.get(MIN_TEMPERATURE));
+            int day = MapperUtils.parseToInt(rawData.get(DAY));
+            int maxTemp = MapperUtils.parseToInt(rawData.get(MAX_TEMPERATURE));
+            int minTemp = MapperUtils.parseToInt(rawData.get(MIN_TEMPERATURE));
 
             int spread = calculateSpread(minTemp, maxTemp);
             return new Weather.Builder()
@@ -46,18 +48,5 @@ public class WeatherMapper {
             throw new InvalidFileDataException("Invalid Temperature data. Max Temperature is lower than min Temperature");
         }
         return maxTemp - minTemp;
-    }
-
-    private static boolean rawDataMissingMandatoryKeys(Map<String, String> rawData, List<String> mandatoryKeys) {
-        return mandatoryKeys.stream().anyMatch(data -> !rawData.containsKey(data));
-    }
-
-    private static int parseToInt(String value) throws InvalidFileDataException {
-        try {
-            return Integer.parseInt(value);
-        } catch (NumberFormatException nfe) {
-            LOG.error("can not parse value {} to int", value);
-            throw new InvalidFileDataException("Invalid value. Value provided can not be parsed to int", nfe);
-        }
     }
 }

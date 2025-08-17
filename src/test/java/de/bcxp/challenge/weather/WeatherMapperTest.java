@@ -31,7 +31,7 @@ class WeatherMapperTest {
 
 
     @Test
-    @DisplayName("Happy WeatherMapper.fromMap()")
+    @DisplayName("WeatherMapper.fromMap() - Happy flow")
     void returnWeather_whenFromMap_givenValidWeatherData() {
         //given
         Map<String, String> rawWeatherMap = Map.of("Day", "1", "MxT", "22", "MnT", "14");

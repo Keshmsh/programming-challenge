@@ -32,7 +32,7 @@ class CountryMapperTest {
 
 
     @Test
-    @DisplayName("Happy")
+    @DisplayName("CountryMapper.fromMap() - Happy flow")
     void returnCountry_whenFromMap_givenValidCountryData() {
         //given
         Map<String, String> rawCountryMap = Map.of("Name", "Austria", "Population", "8926000", "Area (km²)", "83855");
@@ -66,7 +66,7 @@ class CountryMapperTest {
     }
 
     @Test
-    @DisplayName("Invalid file data. MaxTemp lower MinTemp")
+    @DisplayName("Invalid file data. Population 0")
     void returnNull_whenFromMap_givenInvalidPopulation() {
         //given
         Map<String, String> rawCountryMap = Map.of("Name", "Austria", "Population", "0", "Area (km²)", "83855");
@@ -83,7 +83,7 @@ class CountryMapperTest {
     }
 
     @Test
-    @DisplayName("Invalid file data. MaxTemp lower MinTemp")
+    @DisplayName("Invalid file data. Area 0")
     void returnNull_whenFromMap_givenInvalidArea() {
         //given
         Map<String, String> rawCountryMap = Map.of("Name", "Austria", "Population", "8926000", "Area (km²)", "0");

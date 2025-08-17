@@ -34,20 +34,18 @@ class WeatherProcessorTest {
     }
 
     @Test
-    @DisplayName("Happy path test for processWeather()")
-    void returnWeatherList_whenProcessWeather_givenValidWeatherFile() {
+    @DisplayName("processWeather() - Happy flow")
+    void returnWeatherList_whenProcessWeatherFile_givenValidWeatherFile() {
         //given
         List<Map<String, String>> rawWeatherData = Arrays.asList(Map.of("Day", "1", "MxT", "22", "MnT", "14"),
                 Map.of("Day", "2", "MxT", "32", "MnT", "20"),
                 Map.of("Day", "3", "MxT", "40", "MnT", "26"));
 
-        Weather weather = new Weather.Builder().dayOfMonth(1).maximumTemperature(22).minimumTemperature(14).temperatureSpread(8).build();
-
         //when
         when(fileReader.readFile(anyString())).thenReturn("fileContent");
         when(fileParser.parseFileContent(anyString(), anyString())).thenReturn(rawWeatherData);
 
-        List<Weather> result = weatherProcessor.processWeather("anyPath");
+        List<Weather> result = weatherProcessor.processWeatherFile("anyPath");
 
         //then
         assertNotNull(result);
@@ -55,10 +53,10 @@ class WeatherProcessorTest {
 
     @Test
     @DisplayName("returns empty List when null file content")
-    void returnEmptyList_whenProcessWeather_givenNullFileContent() {
+    void returnEmptyList_whenProcessWeatherFile_File_givenNullFileContent() {
         //when
         when(fileReader.readFile(anyString())).thenReturn(null);
-        List<Weather> result = weatherProcessor.processWeather("anyPath");
+        List<Weather> result = weatherProcessor.processWeatherFile("anyPath");
 
         //then
         assertNotNull(result);
@@ -67,10 +65,10 @@ class WeatherProcessorTest {
 
     @Test
     @DisplayName("returns empty List when empty file content")
-    void returnEmptyList_whenProcessWeather_givenEmptyFileContent() {
+    void returnEmptyList_whenProcessWeatherFile_File_givenEmptyFileContent() {
         //when
         when(fileReader.readFile(anyString())).thenReturn("");
-        List<Weather> result = weatherProcessor.processWeather("anyPath");
+        List<Weather> result = weatherProcessor.processWeatherFile("anyPath");
 
         //then
         assertNotNull(result);
@@ -79,12 +77,12 @@ class WeatherProcessorTest {
 
     @Test
     @DisplayName("returns empty List when null parsed data")
-    void returnEmptyList_whenProcessWeather_givenNullParsedData() {
+    void returnEmptyList_whenProcessWeatherFile_File_givenNullParsedData() {
         //when
         when(fileReader.readFile(anyString())).thenReturn("fileContent");
         when(fileParser.parseFileContent(anyString(), anyString())).thenReturn(null);
 
-        List<Weather> result = weatherProcessor.processWeather("anyPath");
+        List<Weather> result = weatherProcessor.processWeatherFile("anyPath");
 
         //then
         assertNotNull(result);
@@ -93,12 +91,12 @@ class WeatherProcessorTest {
 
     @Test
     @DisplayName("returns empty List when empty parsed data")
-    void returnEmptyList_whenProcessWeather_givenEmptyParsedData() {
+    void returnEmptyList_whenProcessWeatherFile_File_givenEmptyParsedData() {
         //when
         when(fileReader.readFile(anyString())).thenReturn("fileContent");
         when(fileParser.parseFileContent(anyString(), anyString())).thenReturn(Collections.emptyList());
 
-        List<Weather> result = weatherProcessor.processWeather("anyPath");
+        List<Weather> result = weatherProcessor.processWeatherFile("anyPath");
 
         //then
         assertNotNull(result);
