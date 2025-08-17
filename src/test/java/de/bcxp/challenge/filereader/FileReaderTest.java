@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mockStatic;
 
+import de.bcxp.challenge.TestUtils;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -41,7 +42,7 @@ class FileReaderTest {
         String result = fileReader.readFile("src/test/resources/de.bcxp.challenge/weather/weather.csv");
 
         assertNotNull(result.lines().collect(Collectors.joining("\n")));
-        assertEquals(expectedResult, result);
+        assertEquals(TestUtils.normalize(expectedResult), TestUtils.normalize(result));
 
     }
 
