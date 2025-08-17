@@ -32,7 +32,6 @@ class FileReaderTest {
     @DisplayName("readFile() - Happy flow")
     void returnValidString_whenReadFile_givenValidCsv() {
         //given
-        //TODO make it system independent
         String expectedResult = "Day,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\r\n"
                 + "1,88,99,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\r\n" + "2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5\r\n"
                 + "3,77,55,66,39.6,0,350,5,350,9,2.8,59,24,1016.8";

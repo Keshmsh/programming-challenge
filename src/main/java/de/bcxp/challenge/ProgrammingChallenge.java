@@ -42,7 +42,7 @@ public class ProgrammingChallenge {
             System.out.printf("found %s Day(s) with smallest temperature spread\n", minSpreadWeather.size());
             for (Weather weather : minSpreadWeather) {
                 String dayWithSmallestTempSpread = String.valueOf(weather.getDayOfMonth());
-                System.out.printf("Day: %s%n", dayWithSmallestTempSpread);
+                System.out.printf("smallest temperature spread Day: %s%n", dayWithSmallestTempSpread);
             }
         } else {
             LOG.debug("empty weatherList");
